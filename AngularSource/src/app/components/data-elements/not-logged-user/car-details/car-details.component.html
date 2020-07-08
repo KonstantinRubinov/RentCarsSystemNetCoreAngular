@@ -1,0 +1,121 @@
+
+
+<div class="row">
+
+    <form *ngIf="car" #formInfo="ngForm" class="col-md-6" id="carData">
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <h3 *ngIf="car">{{car.carFirm}} {{car.carModel}}</h3>
+            </div>
+        </div>
+
+
+
+
+        
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="carType">carType</label>
+                <input disabled #carTypeInfo="ngModel" required type="text" name="carType" id="carType" class="form-control" [(ngModel)]="car.carType" placeholder="carType">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="carYear">carYear</label>
+                <input disabled #carYearInfo="ngModel" required type="number" name="carYear" id="carYear" class="form-control" [(ngModel)]="car.carYear" placeholder="carYear">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="carType">carNumber</label>
+                <input disabled #carNumberInfo="ngModel" required type="text" name="carNumber" id="carNumber" class="form-control" [(ngModel)]="car.carNumber" placeholder="carNumber">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="carGear">carGear</label>
+                <input disabled #carGearInfo="ngModel" required type="text" name="carGear" id="carGear" class="form-control" [(ngModel)]="car.carGear" placeholder="carGear">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="carType">carKm</label>
+                <input disabled #carKmInfo="ngModel" required type="number" name="carKm" id="carKm" class="form-control" [(ngModel)]="car.carKm" placeholder="carKm">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="carAvaliable">carAvaliable</label>
+                <input disabled #carAvaliableInfo="ngModel" required type="text" name="carAvaliable" id="carAvaliable" class="form-control" [(ngModel)]="car.carAvaliable" placeholder="carAvaliable">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="carInShape">carInShape</label>
+                <input disabled #carInShapeInfo="ngModel" required type="text" name="carInShape" id="carInShape" class="form-control" [(ngModel)]="car.carInShape" placeholder="carInShape">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="branchAddress">branchAddress</label>
+                <input disabled #branchAddressInfo="ngModel" required type="text" name="branchAddress" id="branchAddress" class="form-control" [(ngModel)]="car.branchAddress" placeholder="branchAddress">
+            </div>
+        </div>
+    
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="carDayPrice">carDayPrice</label>
+                <input disabled #carDayPriceInfo="ngModel" required type="number" name="carDayPrice" id="carDayPrice" class="form-control" [(ngModel)]="car.carDayPrice" placeholder="carDayPrice">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="carLatePrice">carLatePrice</label>
+                <input disabled #carLatePriceInfo="ngModel" required type="number" name="carLatePrice" id="carLatePrice" class="form-control" [(ngModel)]="car.carLatePrice" placeholder="carLatePrice">
+            </div>
+        </div>
+        
+        <!-- <input *ngIf="myLevel > 2" type="file" (change)="onFileChanged($event)"> -->
+
+        <div *ngIf="myLevel > 0" class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="fromDate">fromDate</label>
+                    <input (change)="DateChanged()" #fromDateInfo="ngModel" required type="date" name="fromDate" id="fromDate" min={{today}} class="form-control" [(ngModel)]="rent.rentStartDate" placeholder="fromDate">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="toDate">toDate</label>
+                    <input (change)="DateChanged()" #toDateInfo="ngModel" required type="date" name="toDate" id="toDate" min={{rent.rentStartDate}} class="form-control" [(ngModel)]="rent.rentEndDate" placeholder="toDate">
+                </div>
+            </div>
+            
+
+            <div *ngIf="orderDateEntered && carPrice" class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="carPrice">carPrice</label>
+                    <input disabled #carPriceInfo="ngModel" required type="number" name="carPrice" id="carPrice" class="form-control" [(ngModel)]="carPrice" placeholder="carPrice">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="orderDays">orderDays</label>
+                    <input disabled #orderDaysInfo="ngModel" required type="number" name="orderDays" id="orderDays" class="form-control" [(ngModel)]="orderDays" placeholder="orderDays">
+                </div>
+
+
+                <a name="OrderCar" id="OrderCar" class="btn btn-secondary col-md-12" (click)="OrderCar()">Order Car</a>
+
+                
+            </div>
+            <h3 *ngIf="myLevel > 0 && priceDaysError == 'Forbidden'" style="color:red">The Dates Are Unavaliable</h3>
+        
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <form *ngIf="car" #formInfo="ngForm" class="col-md-6" id="carData2">
+            <img class="col-xs-12 col-md-12" src='{{mUrl}}{{car.carPicture}}' onerror="this.onerror=null;this.src='../../../assets/images/NoCar.png';" id="carData3">
+            <app-map [branch]="branch" class="col-xs-12 col-md-12"></app-map>
+        </form>
+        
+</div>
+

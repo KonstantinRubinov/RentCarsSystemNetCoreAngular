@@ -1,0 +1,19 @@
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+section{
+    width: 100%;
+    background-color: blue;
+    align-content: center;
+}
+
+app-car-card-horizontal{
+    margin: 0 auto;
+}

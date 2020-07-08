@@ -1,0 +1,6 @@
+<a routerLink="/car-details/{{watchedCar.carNumber}}" class="card box-shadow" style="width: 100%;">
+    <div class="card-body">
+        <p class="card-subtitle mb-2 text-muted">{{watchedCar.carFirm}} {{watchedCar.carModel}}</p>
+    </div>
+    <img class="lib-img-top" style="width: 100%;" src='{{mUrl}}{{watchedCar.carPicture}}' onerror="this.onerror=null;this.src='../../../assets/images/NoCar.png';" alt="Card image cap">
+</a>

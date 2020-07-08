@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+
+  <!-- <a class="navbar-brand" routerLink={{navigators[0].routerLink}}>RentCars</a> -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+    <ul class="navbar-nav mr-auto justify-content-center" >
+      <a *ngIf="loginUser" class="navbar-brand" href="#">
+        <img *ngIf="mUrl!==''" class="rounded-circle" style="width: 30px" src='{{mUrl}}{{loginUser.userPicture}}' onerror="this.onerror=null;this.src='../../../assets/images/NoCar.png';" alt="Card image cap">
+        <img *ngIf="mUrl===''" class="rounded-circle" style="width: 30px" src='{{loginUser.userPicture}}' onerror="this.onerror=null;this.src='../../../assets/images/NoCar.png';" alt="Card image cap">
+      </a>
+      <li class="nav-item" >
+        <a class="nav-link" routerLink={{navigators[0].routerLink}}>{{navigators[0].linkName}}</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" routerLink={{navigators[1].routerLink}}>{{navigators[1].linkName}}</a>
+      </li>
+
+      <li *ngIf="!isLoggedIn" class="nav-item">
+        <a #signUp class="nav-link" data-toggle="modal" data-target="#signUpModal">{{navigators[2].linkName}}</a>
+      </li>
+
+      <li *ngIf="!isLoggedIn" class="nav-item">
+        <a #signIn class="nav-link" data-toggle="modal" data-target="#signInModal">{{navigators[3].linkName}}</a>
+      </li>
+
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <a class="nav-link" href="javascript:void" (click)="logout()">{{navigators[4].linkName}}</a>
+      </li>
+
+      <li *ngIf="myLevel > 2" class="nav-item">
+        <a class="nav-link" routerLink={{navigators[5].routerLink}}>{{navigators[5].linkName}}</a>
+      </li>
+
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <a class="nav-link" routerLink={{navigators[6].routerLink}}>{{navigators[6].linkName}}</a>
+      </li>
+      
+
+    </ul>
+  </div>
+</nav>
+
+<div #signUpModal class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <app-sign-up></app-sign-up>
+        </div>
+    </div>
+</div>
+
+<div #signInModal class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <app-sign-in></app-sign-in>
+    </div>
+  </div>
+</div>

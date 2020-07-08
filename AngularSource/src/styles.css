@@ -1,0 +1,11 @@
+body{
+    /* border: 2px solid black;
+    margin: 0; */
+    overflow-x: hidden;
+}
+
+.inputValidation{
+    color: red;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

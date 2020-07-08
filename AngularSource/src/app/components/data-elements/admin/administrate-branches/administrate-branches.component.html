@@ -1,0 +1,55 @@
+<form #formInfo="ngForm">
+    <div class="form-row">
+        <div class="col-md-3">
+            <select size="9" class="form-control" style="width: 100%;" [(ngModel)]="branchID" [ngModelOptions]="{standalone: true}" (change)="ShowSelectedBranch($event)">
+                <option *ngFor="let branch of branches" [value]="branch.branchID">{{ branch.branchName }}</option>
+            </select>
+        </div>
+        <div class="col-md-9">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="branchName">branchName</label>
+                    <input #branchNameInfo="ngModel" required minlength="5" type="text" name="branchName" id="branchName" class="form-control" [(ngModel)]="branchName" placeholder="branchName">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="branchCity">branchCity</label>
+                    <input #branchCityInfo="ngModel" required minlength="5" type="text" name="branchCity" id="branchCity" class="form-control" [(ngModel)]="branchCity" placeholder="branchCity">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="branchStreet">branchStreet</label>
+                    <input #branchStreetInfo="ngModel" required minlength="5" type="text" name="branchStreet" id="branchStreet" class="form-control" [(ngModel)]="branchStreet" placeholder="branchStreet">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="branchLatitude">branchLatitude</label>
+                    <input #branchLatitudeInfo="ngModel" required type="number" name="branchLatitude" id="branchLatitude" class="form-control" [(ngModel)]="branchLatitude" placeholder="branchLatitude">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="branchLongitude">branchLongitude</label>
+                    <input #branchLongitudeInfo="ngModel" required type="number" name="branchLongitude" id="branchLongitude" class="form-control" [(ngModel)]="branchLongitude" placeholder="branchLongitude">
+                </div>
+            </div>
+
+            <p *ngIf="branchNameInfo.errors?.required && branchNameInfo.touched" class="inputValidation">Missing branch name.</p>
+            <p *ngIf="branchCityInfo.errors?.required && branchCityInfo.touched" class="inputValidation">Missing branch city.</p>
+            <p *ngIf="branchStreetInfo.errors?.required && branchStreetInfo.touched" class="inputValidation">Missing branch street.</p>
+            <p *ngIf="branchLatitudeInfo.errors?.required && branchLatitudeInfo.touched" class="inputValidation">Missing branch latitude.</p>
+            <p *ngIf="branchLongitudeInfo.errors?.required && branchLongitudeInfo.touched" class="inputValidation">Missing branch longitude.</p>
+            
+            <p *ngIf="branchNameInfo.errors?.minlength && branchNameInfo.touched" class="inputValidation">Branch name be minimum five chars.</p>
+            <p *ngIf="branchCityInfo.errors?.minlength && branchCityInfo.touched" class="inputValidation">Branch city be minimum five chars.</p>
+            <p *ngIf="branchStreetInfo.errors?.minlength && branchStreetInfo.touched" class="inputValidation">Branch street be minimum five chars.</p>
+            <p *ngIf="branchLatitude==0" class="inputValidation">Branch latitude can't be 0.</p>
+            <p *ngIf="branchLongitude==0" class="inputValidation">Branch longitude can't be 0.</p>
+
+        
+            <button type="button" [disabled]="formInfo.form.invalid" class="btn btn-primary" (click)="AddBranch()">Add Branch</button>
+            <button type="button" [disabled]="formInfo.form.invalid" class="btn btn-primary" (click)="UpdateBranch()">Update Branch</button>
+            <button type="button" [disabled]="formInfo.form.invalid" class="btn btn-primary" (click)="DeleteBranch()">Delete Branch</button>
+        </div>
+    </div>
+            
+            
+</form>

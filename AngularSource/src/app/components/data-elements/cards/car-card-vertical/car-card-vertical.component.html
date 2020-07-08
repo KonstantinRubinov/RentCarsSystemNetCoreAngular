@@ -1,0 +1,21 @@
+<div class="card box-shadow" style="width: 100%;">
+    <!-- <img *ngIf="car.carPicture !== ''" class="card-img-top" src='{{car.carPicture}}' alt="Card image cap"> -->
+    <!-- <img *ngIf="car.carPicture === ''" class="card-img-top" src="/assets/images/car.jpg" alt="Card image cap"> -->
+    <!-- <img class="card-img-top" src="/assets/images/car.jpg" alt="Card image cap"> -->
+    <img class="lib-img-top" style="width: 100%;" src='{{mUrl}}{{car.carPicture}}' onerror="this.onerror=null;this.src='../../../assets/images/NoCar.png';" alt="Card image cap">
+    <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">{{car.carFirm}} {{car.carModel}}</h6>
+        <p class="card-text">
+            Car Type : {{car.carType}}<br>
+            Car Year : {{car.carYear}}<br>
+            Car Number : {{car.carNumber}}<br>
+            Car Gear : {{car.carGear}}<br>
+            Car Branch City : {{splittedBranch[0]}}<br>
+            Car Branch Name : {{splittedBranch[1]}}<br>
+            Car Branch Street : {{splittedBranch[2]}}
+        </p>
+        <div style="width: 100%;">
+          <a routerLink="/car-details/{{car.carNumber}}" onerror="this.onerror=null;this.src='../../../assets/images/NoCar.png';" class="btn btn-primary">Order Car</a>
+        </div>
+    </div>
+</div>

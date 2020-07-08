@@ -1,0 +1,78 @@
+<form #formInfo="ngForm">
+  <div class="form-row">
+      <div class="col-md-3">
+          <select size="9" class="form-control" style="width: 100%;" [(ngModel)]="carNumber" [ngModelOptions]="{standalone: true}" (change)="ShowSelectedCar($event)">
+              <option *ngFor="let car of cars" [value]="car.carNumber">{{ car.carNumber }}</option>
+          </select>
+      </div>
+      <div class="col-md-9">
+          <div class="form-row">
+              
+              <div class="form-group col-md-3">
+                  <label for="carNumber">carNumber</label>
+                  <input #carNumberInfo="ngModel" required type="text" name="carNumber" id="carNumber" class="form-control" [(ngModel)]="carNumber" placeholder="carNumber">
+              </div>
+              <div class="form-group col-md-3">
+                  <label for="carTypeID">carTypeID</label>
+                  <input #carTypeIDInfo="ngModel" required type="number" name="carTypeID" id="carTypeID" class="form-control" [(ngModel)]="carTypeID" placeholder="carTypeID">
+              </div>
+              <div class="form-group col-md-3">
+                  <label for="carKm">carKm</label>
+                  <input #carKmInfo="ngModel" required type="number" name="carKm" id="carKm" class="form-control" [(ngModel)]="carKm" placeholder="carKm">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="carBranchID">carBranchID</label>
+                <input #carBranchIDInfo="ngModel" required type="number" name="carBranchID" id="carBranchID" class="form-control" [(ngModel)]="carBranchID" placeholder="carBranchID">
+            </div>
+          </div>
+
+          <div class="form-row">
+              
+            <div class="form-group col-md-4">
+              <label for="carPicture">carPicture</label>
+              <input #carPictureInfo="ngModel" required type="url" name="carPicture" id="carPicture" class="form-control" [(ngModel)]="carPicture" placeholder="carPicture">
+          </div>
+          <!-- <div class="form-group col-md-4">
+              <label for="carInShape">carInShape</label>
+              <ul class="list-group">
+                    <li class="list-group-item">
+                      <input type="radio" [(ngModel)]="carInShape" name="carInShape" [value]="true"/> "true"
+                    </li>
+                    <li class="list-group-item">
+                      <input type="radio" [(ngModel)]="carInShape" name="carInShape" [value]="false"/> "false"
+                    </li>
+              </ul>
+          </div>
+            <div class="form-group col-md-4">
+                <label for="carAvaliable">carAvaliable</label>
+                <ul class="list-group">
+                        <li class="list-group-item">
+                          <input type="radio" [(ngModel)]="carAvaliable" name="carAvaliable" [value]="true"/> "true"
+                        </li>
+                        <li class="list-group-item">
+                          <input type="radio" [(ngModel)]="carAvaliable" name="carAvaliable" [value]="false"/> "false"
+                        </li>
+                  </ul>
+            </div>-->
+        </div> 
+        
+          <p *ngIf="carNumberInfo.errors?.required && carNumberInfo.touched" class="inputValidation">Missing rentNumber.</p>
+          <p *ngIf="carTypeIDInfo.errors?.required && carTypeIDInfo.touched" class="inputValidation">Missing userID.</p>
+          <p *ngIf="carKmInfo.errors?.required && carKmInfo.touched" class="inputValidation">Missing carNumber.</p>
+          <p *ngIf="carBranchIDInfo.errors?.required && carBranchIDInfo.touched" class="inputValidation">Missing rentStartDate.</p>
+          <p *ngIf="carPictureInfo.errors?.required && carPictureInfo.touched" class="inputValidation">Missing rentEndDate.</p>
+          <!-- <p *ngIf="carAvaliableInfo.errors?.required && carAvaliableInfo.touched" class="inputValidation">Missing rentRealEndDate.</p>
+           -->
+
+
+          <button type="button" [disabled]="formInfo.form.invalid" class="btn btn-primary" (click)="AddCar()">Add Car</button>
+          <button type="button" [disabled]="formInfo.form.invalid" class="btn btn-primary" (click)="UpdateCar()">Update Car</button>
+          <button type="button" [disabled]="formInfo.form.invalid" class="btn btn-primary" (click)="DeleteCar()">Delete Car</button>
+      
+      </div>
+  </div>
+
+
+
+  
+</form>

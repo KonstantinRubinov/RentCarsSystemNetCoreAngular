@@ -1,0 +1,70 @@
+<form #myform="ngForm">
+  <div class="modal-header">
+      <div class="card-block">
+          <h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
+          <button class="btn-google" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
+          <button class="btn-facebook" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
+          <button class="btn-linkedin" (click)="signInWithLinkedIn()"><span class="fa fa-linkedin"></span></button>
+        </div>
+    
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group col-md-12">
+      <label for="UserName" *ngIf="usernameInfo.errors?.required && usernameInfo.touched" class="inputValidation ErrorColor">Missing user name.</label>
+      <label for="UserName" *ngIf="usernameInfo.errors?.minlength && usernameInfo.touched" class="inputValidation ErrorColor">Minimum two chars.</label>
+      <label for="UserName" *ngIf="(!usernameInfo.errors?.required || !usernameInfo.touched) && (!usernameInfo.errors?.minlength || !usernameInfo.touched)">UserName</label>
+        <input #usernameInfo="ngModel" required minlength="2" type="text" name="UserName2" id="UserName2" class="form-control" [(ngModel)]="login.userNickName" placeholder="UserName">
+    </div>
+
+    <div class="form-group col-md-12">
+      <label for="Password" *ngIf="passwordInfo.errors?.required && passwordInfo.touched" class="inputValidation ErrorColor">Missing user password.</label>
+      <label for="Password" *ngIf="passwordInfo.errors?.minlength && passwordInfo.touched" class="inputValidation ErrorColor">Minimum two chars.</label>
+      <label for="Password" *ngIf="(!passwordInfo.errors?.required || !passwordInfo.touched) && (!passwordInfo.errors?.minlength || !passwordInfo.touched)">Password</label>
+        <input #passwordInfo="ngModel" required minlength="2" type="password" name="Password2" id="Password2" class="form-control" [(ngModel)]="login.userPassword" placeholder="Password">
+    </div>
+
+  <p *ngIf="loginError!==''" class="inputValidation">{{loginError}}</p>
+  </div>
+  <div class="modal-footer">
+      <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+    <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button [disabled]="myform.form.invalid" class="btn btn-primary" (click)="signIn()">Sign In</button>
+  </div>
+
+
+  <!-- <div class="jumbotron bg-transparent text-center">
+    <div *ngIf="!user" class="card text-center">
+      <h6 class="card-header">
+        Social Login Demo
+      </h6>
+      <div class="card-block">
+        <h4 class="card-title">Not signed in</h4>
+        <p class="card-text">Sign in with</p>
+      </div>
+      <div class="card-block">
+        
+        <button class="btn-google" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
+        <button class="btn-facebook" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
+        <button class="btn-linkedin" (click)="signInWithLinkedIn()"><span class="fa fa-linkedin"></span></button>
+      </div>
+    </div>
+    <div *ngIf="user" class="card text-center">
+      <h6 class="card-header">
+        Social Login Demo
+      </h6>
+      <div class="card-block"></div>
+      <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
+      <div class="card-block">
+        <h4 class="card-title">{{ user.name }}</h4>
+        <p class="card-text">{{ user.email }}</p>
+      </div>
+      <div class="card-block">
+        <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+      </div>
+    </div>
+  </div> -->
+
+</form>

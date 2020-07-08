@@ -1,0 +1,85 @@
+<form #formInfo="ngForm">
+  <div class="form-row">
+      <div class="col-md-3">
+          <select size="9" class="form-control" style="width: 100%;" [(ngModel)]="userID" [ngModelOptions]="{standalone: true}" (change)="ShowSelectedUser($event)">
+              <option *ngFor="let user of users" [value]="user.userID">{{ user.userNickName }}</option>
+          </select>
+      </div>
+      <div class="col-md-9">
+          <div class="form-row">
+              <div class="form-group col-md-4">
+                  <label for="userFirstName">userFirstName</label>
+                  <input #userFirstNameInfo="ngModel" required minlength="5" type="text" name="userFirstName" id="userFirstName" class="form-control" [(ngModel)]="userFirstName" placeholder="userFirstName">
+              </div>
+              <div class="form-group col-md-4">
+                  <label for="userLastName">userLastName</label>
+                  <input #userLastNameInfo="ngModel" required minlength="5" type="text" name="userLastName" id="userLastName" class="form-control" [(ngModel)]="userLastName" placeholder="userLastName">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="userNickName">userNickName</label>
+                <input #userNickNameInfo="ngModel" required minlength="5" type="text" name="userNickName" id="userNickName" class="form-control" [(ngModel)]="userNickName" placeholder="userNickName">
+              </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="userBirthDate">userBirthDate</label>
+                <input #userBirthDateInfo="ngModel" type="date" name="userBirthDate" id="userBirthDate" class="form-control" [ngModel]="userBirthDate | date:'yyyy-MM-dd'" (ngModelChange)="userBirthDate = $event" placeholder="userBirthDate">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="userGender">userGender</label>
+                <input #userGenderInfo="ngModel" required type="text" name="userGender" id="userGender" class="form-control" [(ngModel)]="userGender" placeholder="userGender">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="userEmail">userEmail</label>
+              <input #userEmailInfo="ngModel" required minlength="5" type="email" name="userEmail" id="userEmail" class="form-control" [(ngModel)]="userEmail" placeholder="userEmail">
+            </div>
+        </div>
+
+
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="userPicture">userPicture</label>
+            <input #userPictureInfo="ngModel" required minlength="8" type="text" name="userPicture" id="userPicture" class="form-control" [(ngModel)]="userPicture" placeholder="userPicture">
+          </div>
+          <div class="form-group col-md-4">
+              <label for="userLevel">userLevel</label>
+              <input #userLevelInfo="ngModel" required type="number" name="userLevel" id="userLevel" class="form-control" [(ngModel)]="userLevel" placeholder="userLevel">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="userImage">userImage</label>
+            <input #userImageInfo="ngModel" required minlength="8" type="text" name="userImage" id="userImage" class="form-control" [(ngModel)]="userImage" placeholder="userImage">
+          </div>
+      </div>
+
+          
+
+          <p *ngIf="userFirstNameInfo.errors?.required && userFirstNameInfo.touched" class="inputValidation">Missing branch name.</p>
+          <p *ngIf="userLastNameInfo.errors?.required && userLastNameInfo.touched" class="inputValidation">Missing branch city.</p>
+          <p *ngIf="userNickNameInfo.errors?.required && userNickNameInfo.touched" class="inputValidation">Missing branch street.</p>
+          <p *ngIf="userGenderInfo.errors?.required && userGenderInfo.touched" class="inputValidation">Missing branch city.</p>
+          <p *ngIf="userEmailInfo.errors?.required && userEmailInfo.touched" class="inputValidation">Missing branch street.</p>
+          <p *ngIf="userPictureInfo.errors?.required && userPictureInfo.touched" class="inputValidation">Missing branch street.</p>
+          <p *ngIf="userLevelInfo.errors?.required && userLevelInfo.touched" class="inputValidation">Missing branch city.</p>
+          <p *ngIf="userImageInfo.errors?.required && userImageInfo.touched" class="inputValidation">Missing branch street.</p>
+          
+          
+          <p *ngIf="userFirstNameInfo.errors?.minlength && userFirstNameInfo.touched" class="inputValidation">Branch name be minimum five chars.</p>
+          <p *ngIf="userLastNameInfo.errors?.minlength && userLastNameInfo.touched" class="inputValidation">Branch city be minimum five chars.</p>
+          <p *ngIf="userNickNameInfo.errors?.minlength && userNickNameInfo.touched" class="inputValidation">Branch street be minimum five chars.</p>
+          <p *ngIf="userEmailInfo.errors?.minlength && userEmailInfo.touched" class="inputValidation">Branch street be minimum five chars.</p>
+          <p *ngIf="userPictureInfo.errors?.minlength && userPictureInfo.touched" class="inputValidation">Branch city be minimum five chars.</p>
+          <p *ngIf="userLevelInfo.errors?.minlength && userLevelInfo.touched" class="inputValidation">Branch street be minimum five chars.</p>
+          <p *ngIf="userImageInfo.errors?.minlength && userImageInfo.touched" class="inputValidation">Branch street be minimum five chars.</p>
+         
+
+      
+          <button type="button" [disabled]="formInfo.form.invalid" class="btn btn-primary" (click)="AddUser()">Add User</button>
+          <button type="button" [disabled]="formInfo.form.invalid" class="btn btn-primary" (click)="UpdateUser()">Update User</button>
+          <button type="button" [disabled]="formInfo.form.invalid" class="btn btn-primary" (click)="DeleteUser()">Delete User</button>
+      </div>
+  </div>
+          
+          
+</form>

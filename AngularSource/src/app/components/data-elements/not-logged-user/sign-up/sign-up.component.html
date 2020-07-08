@@ -1,0 +1,101 @@
+<form #formInfo="ngForm">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="FirstName" *ngIf="firstNameInfo.errors?.required && firstNameInfo.touched" class="inputValidation ErrorColor">Missing user first name.</label>
+            <label for="FirstName" *ngIf="firstNameInfo.errors?.minlength && firstNameInfo.touched" class="inputValidation ErrorColor">Minimum two chars.</label>
+            <label for="FirstName" *ngIf="(!firstNameInfo.errors?.required || !firstNameInfo.touched) && (!firstNameInfo.errors?.minlength || !firstNameInfo.touched)">FirstName</label>
+            <input #firstNameInfo="ngModel" required minlength="2" type="text" name="FirstName" id="FirstName" class="form-control" [(ngModel)]="userFirstName" placeholder="FirstName">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="LastName" *ngIf="lastNameInfo.errors?.required && lastNameInfo.touched" class="inputValidation ErrorColor">Missing user last name.</label>
+            <label for="LastName" *ngIf="lastNameInfo.errors?.minlength && lastNameInfo.touched" class="inputValidation ErrorColor">Minimum two chars.</label>
+            <label for="LastName" *ngIf="(!lastNameInfo.errors?.required || !lastNameInfo.touched) && (!lastNameInfo.errors?.minlength || !lastNameInfo.touched)">LastName</label>
+            <input #lastNameInfo="ngModel" required minlength="2" type="text" name="LastName" id="LastName" class="form-control" [(ngModel)]="userLastName" placeholder="LastName">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="ID" *ngIf="idInfo.errors?.required && idInfo.touched" class="inputValidation ErrorColor">Missing user ID.</label>
+            <label for="ID" *ngIf="idInfo.value !== '' && idInfo.errors?.minlength && idInfo.touched" class="inputValidation ErrorColor">Minimum eight chars.</label>
+            <label for="ID" *ngIf="idInfo.value !== '' && !idInfo.errors?.required && !idInfo.errors?.minlength && ValidateID(idInfo.value)!=1 && ValidateID(idInfo.value)!=0 && idInfo.touched" class="inputValidation ErrorColor">Wrong User ID.</label>
+            <!-- <label for="Email" *ngIf="idInfo.errors && !idInfo.errors?.required && idInfo.value !== '' && (idInfo.touched || idInfo.dirty)" class="inputValidation ErrorColor">Wrong User ID.</label> -->
+            <label for="ID" *ngIf="(!idInfo.errors?.required || !idInfo.touched) && (idInfo.value === '' || !idInfo.errors?.minlength || !idInfo.errors?.touched) && (ValidateID(idInfo.value)==1 || ValidateID(idInfo.value)==0 || !idInfo.touched)">ID</label>
+            <!-- <input #idInfo="ngModel" required pattern="/^[0-9]*$/" minlength="8" type="text" name="ID" id="ID" class="form-control" [(ngModel)]="user.userID" placeholder="ID"> -->
+            <input #idInfo="ngModel" required minlength="8" type="text" name="ID" id="ID" class="form-control" [(ngModel)]="userID" placeholder="ID">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="BirthDate" *ngIf="birthDateInfo.errors?.required && birthDateInfo.touched" class="inputValidation ErrorColor">Missing user birthDate.</label>
+            <label for="BirthDate" *ngIf="!birthDateInfo.errors?.required || !birthDateInfo.touched">BirthDate</label>
+            <input #birthDateInfo="ngModel" required type="date" name="BirthDate" id="BirthDate" class="form-control" (ngModel)="userBirthDate" (ngModelChange)="userBirthDate = $event" placeholder="BirthDate">
+          </div>
+        </div>
+              
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="Gender" *ngIf="genderInfo.errors?.required && genderInfo.touched" class="inputValidation ErrorColor">Missing user gender.</label>
+            <label for="Gender" *ngIf="(!genderInfo.errors?.required || !genderInfo.touched) && (!genderInfo.errors?.minlength || !genderInfo.touched)">Gender</label>
+            <select #genderInfo="ngModel" required type="text" name="Gender" id="Gender" class="form-control" [(ngModel)]="userGender">
+              <option *ngFor="let genderChoise of genderChoises" [ngValue]="genderChoise">{{ genderChoise }}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="Email" *ngIf="emailInfo.errors?.required && emailInfo.touched" class="inputValidation ErrorColor">Missing user email.</label>
+            <label for="Email" *ngIf="emailInfo.errors && !emailInfo.errors?.required && emailInfo.value !== '' && (emailInfo.touched || emailInfo.dirty)" class="inputValidation ErrorColor">Wrong user email.</label>
+            <label for="Email" *ngIf="(!emailInfo.errors?.required || !emailInfo.touched) && (!emailInfo.errors || emailInfo.value === '' || !(emailInfo.touched || emailInfo.dirty))">Email</label>
+            <input #emailInfo="ngModel" required pattern="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" type="email" name="Email" id="Email" class="form-control" [(ngModel)]="userEmail" placeholder="Email">
+          </div>
+        </div>
+              
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="UserName" *ngIf="usernameInfo.errors?.required && usernameInfo.touched" class="inputValidation ErrorColor">Missing nick name.</label>
+            <label for="UserName" *ngIf="usernameInfo.errors?.minlength && usernameInfo.touched" class="inputValidation ErrorColor">Minimum two chars.</label>
+            <label for="UserName" *ngIf="(!usernameInfo.errors?.required || !usernameInfo.touched) && (!usernameInfo.errors?.minlength || !usernameInfo.touched)">UserName</label>
+            <input #usernameInfo="ngModel" required minlength="2" type="text" name="UserName" id="UserName" class="form-control" [(ngModel)]="userNickName" placeholder="UserName">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="Password" *ngIf="passwordInfo.errors?.required && passwordInfo.touched" class="inputValidation ErrorColor">Missing password.</label>
+            <label for="Password" *ngIf="passwordInfo.errors?.minlength && passwordInfo.touched" class="inputValidation ErrorColor">Minimum two chars.</label>
+            <label for="Password" *ngIf="(!passwordInfo.errors?.required || !passwordInfo.touched) && (!passwordInfo.errors?.minlength || !passwordInfo.touched)">Password</label>
+            <input #passwordInfo="ngModel" required minlength="2" type="password" name="Password" id="Password" class="form-control" [(ngModel)]="userPassword" placeholder="Password">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="RetypePassword" *ngIf="retypePasswordInfo.errors?.required && retypePasswordInfo.touched" class="inputValidation ErrorColor">Missing retype.</label>
+            <label for="RetypePassword" *ngIf="(!retypePasswordInfo.errors?.required || !retypePasswordInfo.touched) && !ValidateRetypePassword() && retypePasswordInfo.touched" class="inputValidation ErrorColor">No match.</label>
+            <label for="RetypePassword" *ngIf="(!retypePasswordInfo.errors?.required || !retypePasswordInfo.touched) && (ValidateRetypePassword() || !retypePasswordInfo.touched)">RetypePassword</label>
+            <input #retypePasswordInfo="ngModel" required type="password" name="RetypePassword" id="RetypePassword" class="form-control" [(ngModel)]="userPassword2" placeholder="RetypePassword">
+          </div>
+        </div>
+        
+        <input type="file" (change)="fileChangeEvent($event)">
+
+        <image-cropper
+          [aspectRatio]="1 / 1"
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [resizeToWidth]="0"
+          format="extension"
+          (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded()"
+          (loadImageFailed)="loadImageFailed()"
+        ></image-cropper>
+        <img [src]="croppedImage" style="width:100px" />
+
+        <p *ngIf="!rightFile" class="inputValidation">file is not image.</p>
+        
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" [disabled]="formInfo.form.invalid" class="btn btn-primary" (click)="signUp()">Sign Up</button>
+      </div>
+</form>

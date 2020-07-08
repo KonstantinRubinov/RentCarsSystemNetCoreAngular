@@ -1,0 +1,20 @@
+<div class="our-cars">
+    <div class="row justify-content-md-center"  *ngIf="loadingCarData">
+        <app-rotated-image></app-rotated-image>
+    </div>
+    
+
+    <h1>Our Cars</h1>
+
+    <h3 *ngIf="allCarsAllDataError" style="text-align:center">{{allCarsAllDataError}}</h3>
+    
+
+
+
+    <div class="row justify-content-md-center">
+        <app-car-card-vertical *ngFor="let car of fullCars" class="col-md-auto center-block col-md-4" [car]="car"></app-car-card-vertical>
+    </div>
+
+    <button type="button" class="btn btn-lg btn-link" routerLink={{navigators[0].routerLink}} (click)="ShowMore()">Show More Cars</button>
+</div>
+

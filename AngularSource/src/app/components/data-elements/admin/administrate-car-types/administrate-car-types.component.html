@@ -1,0 +1,81 @@
+<form #formInfo="ngForm">
+    <div class="form-row">
+        <div class="col-md-3">
+            <select size="9" class="form-control" style="width: 100%;" [(ngModel)]="carTypeId" [ngModelOptions]="{standalone: true}" (change)="ShowSelectedCarType($event)">
+                <option *ngFor="let carType of carTypes" [value]="carType.carTypeId">{{ carType.carFirm + " " + carType.carModel + " " + carType.carGear }}</option>
+            </select>
+        </div>
+        <div class="col-md-9">
+            <div class="form-row">
+                
+                <div class="form-group col-md-4">
+                    <label for="carType">Car Type</label>
+                    <input #carTypeInfo="ngModel" required minlength="5" type="text" name="carType" id="carType" class="form-control" [(ngModel)]="carType" placeholder="carType">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="carFirm">carFirm</label>
+                    <input #carFirmInfo="ngModel" required minlength="3" type="text" name="carFirm" id="carFirm" class="form-control" [(ngModel)]="carFirm" placeholder="carFirm">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="carModel">carModel</label>
+                    <input #carModelInfo="ngModel" required minlength="5" type="text" name="carModel" id="carModel" class="form-control" [(ngModel)]="carModel" placeholder="carModel">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="carDayPrice">carDayPrice</label>
+                    <input #carDayPriceInfo="ngModel" required type="number" name="carDayPrice" id="carDayPrice" class="form-control" [(ngModel)]="carDayPrice" placeholder="carDayPrice">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="carLatePrice">carLatePrice</label>
+                    <input #carLatePriceInfo="ngModel" required type="number" name="carLatePrice" id="carLatePrice" class="form-control" [(ngModel)]="carLatePrice" placeholder="carLatePrice">
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="carYear">carYear</label>
+                    <input #carYearInfo="ngModel" required type="number" name="carYear" id="carYear" class="form-control" [(ngModel)]="carYear" placeholder="carYear">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="carGear">carGear</label>
+                    <select #carGearInfo="ngModel" required type="text" name="carGear" id="carGear" class="form-control" [(ngModel)]="selectedGear">
+                    <option *ngFor="let gear of gears" [ngValue]="gear">{{ gear }}</option>
+                    </select>
+                    
+                </div>
+            </div>
+            <p *ngIf="carTypeInfo.errors?.required && carTypeInfo.touched" class="inputValidation">Missing car type.</p>
+            <p *ngIf="carFirmInfo.errors?.required && carFirmInfo.touched" class="inputValidation">Missing car firm.</p>
+            <p *ngIf="carModelInfo.errors?.required && carModelInfo.touched" class="inputValidation">Missing car model.</p>
+            <p *ngIf="carDayPriceInfo.errors?.required && carDayPriceInfo.touched" class="inputValidation">Missing car day price.</p>
+            <p *ngIf="carLatePriceInfo.errors?.required && carLatePriceInfo.touched" class="inputValidation">Missing car late price.</p>
+            <p *ngIf="carYearInfo.errors?.required && carYearInfo.touched" class="inputValidation">Missing car year.</p>
+            <p *ngIf="carGearInfo.errors?.required && carGearInfo.touched" class="inputValidation">Missing car gear.</p>
+            
+
+
+
+
+            <p *ngIf="carTypeInfo.errors?.minlength && carTypeInfo.touched" class="inputValidation">Car type - minimum five chars.</p>
+            <p *ngIf="carFirmInfo.errors?.minlength && carFirmInfo.touched" class="inputValidation">Car firm - minimum five chars.</p>
+            <p *ngIf="carModelInfo.errors?.minlength && carModelInfo.touched" class="inputValidation">Car model - minimum five chars.</p>
+            <p *ngIf="carDayPriceInfo==0" class="inputValidation">Car day price can't be 0.</p>
+            <p *ngIf="carLatePriceInfo==0" class="inputValidation">Car late price can't be 0.</p>
+            <p *ngIf="carYear==0" class="inputValidation">Car year can't be 0.</p>
+            <p *ngIf="carGearInfo.errors?.minlength && carGearInfo.touched" class="inputValidation">Car gear - minimum five chars.</p>
+            
+
+            <button type="button" [disabled]="formInfo.form.invalid" class="btn btn-primary" (click)="AddType()">Add Type</button>
+            <button type="button" [disabled]="formInfo.form.invalid" class="btn btn-primary" (click)="UpdateType()">Update Type</button>
+            <button type="button" [disabled]="formInfo.form.invalid" class="btn btn-primary" (click)="DeleteType()">Delete Type</button>
+        
+        </div>
+    </div>
+
+
+
+    
+</form>

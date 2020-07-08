@@ -1,0 +1,9 @@
+.box-shadow {
+    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+}
+
+a{
+    float: left;
+    margin-bottom: 10px;
+}

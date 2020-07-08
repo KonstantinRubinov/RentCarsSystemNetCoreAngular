@@ -1,0 +1,55 @@
+<div class="modal-body">
+  <form #formInfo="ngForm">
+    
+      <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="FreeSearch">Free Search</label>
+            <input #freeSearchInfo="ngModel" type="text" name="FreeSearch" id="FreeSearch" class="form-control" [(ngModel)]="localSearchCar.freeSearch" placeholder="FreeSearch">
+        </div>
+        
+      </div>
+
+      <div class="form-row">
+          <div class="form-group col-md-6">
+              <label for="FromDate">From Date</label>
+              <input #fromDateInfo="ngModel" type="date" name="FromDate" id="FromDate" min={{today}} class="form-control" [(ngModel)]="localSearchCar.fromDate" placeholder="FromDate">
+          </div>
+          <div class="form-group col-md-6">
+              <label for="ToDate">To Date</label>
+              <input #fromDateInfo="ngModel" type="date" name="ToDate" id="ToDate" min={{localSearchCar.fromDate}} class="form-control" [(ngModel)]="localSearchCar.toDate" placeholder="ToDate">
+          </div>
+        </div>
+
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="Company">Company</label>
+            <select #companyInfo="ngModel" required type="text" name="Company" id="Company" class="form-control" [(ngModel)]="selectedCompany">
+              <option *ngFor="let firm of firms" [ngValue]="firm">{{ firm }}</option>
+            </select>
+        </div>
+      
+        <div class="form-group col-md-6">
+          <label for="carType">carType</label>
+          <select #carTypeInfo="ngModel" required type="text" name="carType" id="carType" class="form-control" [(ngModel)]="selectedType">
+            <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-6">
+              <label for="Gear">Gear</label>
+              <select #gearInfo="ngModel" required type="text" name="Gear" id="Gear" class="form-control" [(ngModel)]="selectedGear">
+                <option *ngFor="let gear of gears" [ngValue]="gear">{{ gear }}</option>
+              </select>
+            </div>
+            
+          <div class="form-group col-md-6">
+              <label for="Year">Year</label>
+              <input #yearInfo="ngModel" type="number" name="Year" id="Year" class="form-control" [(ngModel)]="localSearchCar.year" placeholder="Year">
+          </div>
+      </div>
+      <a class="btn btn-primary" routerLink={{navigators[0].routerLink}} (click)="Search()">Search</a>
+    </form>
+    
+</div>

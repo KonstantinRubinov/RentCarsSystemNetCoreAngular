@@ -1,0 +1,49 @@
+<div class="row" style="width:100%">
+  <form #formInfo="ngForm" class="col-md-12" id="carData">
+      <h3>Contact Us</h3>
+      <div class="form-row">
+          <div class="form-group col-md-12">
+              <label for="firstName">First Name</label>
+              <input #firstNameInfo="ngModel" required minlength="2" type="text" name="firstName" id="firstName" class="form-control" [(ngModel)]="contact.userFirstName" placeholder="First Name">
+          </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="lastName">Last Name</label>
+          <input #lastNameInfo="ngModel" required minlength="2" type="text" name="lastName" id="lastName" class="form-control" [(ngModel)]="contact.userLastName" placeholder="Last Name">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="eMail">E-Mail</label>
+          <input #emailInfo="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" type="email" name="eMail" id="eMail" class="form-control" [(ngModel)]="contact.userEmail" placeholder="E-Mail">
+        </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-12">
+              <label for="message">Message</label>
+              <textarea #messageInfo="ngModel" required minlength="2" name="message" id="message" class="form-control" [(ngModel)]="contact.userMessage" placeholder="Message"></textarea>
+          </div>
+      </div>
+
+      <div class="form-row">
+          <div class="form-group col-md-12">
+              <button type="button" [disabled]="formInfo.form.invalid" class="btn btn-primary col-md-12" (click)="ContactUs()">Send</button>
+          </div>
+      </div>
+
+      <p *ngIf="firstNameInfo.errors?.required && firstNameInfo.touched" class="inputValidation">Missing user first name.</p>
+      <p *ngIf="firstNameInfo.errors?.minlength && firstNameInfo.touched" class="inputValidation">User first name be minimum two chars.</p>
+      
+      <p *ngIf="lastNameInfo.errors?.required && lastNameInfo.touched" class="inputValidation">Missing user last name.</p>
+      <p *ngIf="lastNameInfo.errors?.minlength && lastNameInfo.touched" class="inputValidation">User last name be minimum two chars.</p>
+
+      <p *ngIf="emailInfo.errors?.required && emailInfo.touched" class="inputValidation">Missing user email.</p>
+      <p *ngIf="emailInfo.errors && emailInfo.value !== '' &&(emailInfo.touched || emailInfo.dirty)" class="inputValidation">Wrong user email.</p>
+          
+      <p *ngIf="messageInfo.errors?.required && messageInfo.touched" class="inputValidation">Missing user message.</p>
+      <p *ngIf="messageInfo.errors?.minlength && messageInfo.touched" class="inputValidation">User message be minimum two chars.</p>
+
+  </form>
+</div>
+

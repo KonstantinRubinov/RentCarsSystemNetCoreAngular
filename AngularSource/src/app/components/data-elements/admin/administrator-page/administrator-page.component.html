@@ -1,0 +1,40 @@
+<section class="row">
+
+  <ul class="nav flex-column col-md-2 admin-navigator">
+    <li class="nav-item">
+      <a class="nav-link active" id="Branches-tab" data-toggle="tab" href="#Branches" role="tab" aria-controls="Branches" aria-selected="true">Branches</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="CarTypes-tab" data-toggle="tab" href="#CarTypes" role="tab" aria-controls="CarTypes" aria-selected="false">Car Types</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="Orders-tab" data-toggle="tab" href="#Orders" role="tab" aria-controls="Orders" aria-selected="false">Orders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="Users-tab" data-toggle="tab" href="#Users" role="tab" aria-controls="Users" aria-selected="false">Users</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="Cars-tab" data-toggle="tab" href="#Cars" role="tab" aria-controls="Cars" aria-selected="false">Cars</a>
+    </li>
+  </ul>
+  
+  <!-- Tab panes -->
+  <div class="tab-content col-md-10" id="myTabContent">
+    <div class="tab-pane fade show active" id="Branches" role="tabpanel" aria-labelledby="Branches-tab">
+        <app-administrate-branches></app-administrate-branches>
+    </div>
+    <div class="tab-pane fade" id="CarTypes" role="tabpanel" aria-labelledby="CarTypes-tab">
+        <app-administrate-car-types></app-administrate-car-types>
+    </div>
+    <div class="tab-pane fade" id="Orders" role="tabpanel" aria-labelledby="Orders-tab">
+        <app-administrate-orders></app-administrate-orders>
+    </div>
+    <div class="tab-pane fade" id="Users" role="tabpanel" aria-labelledby="Users-tab">
+        <app-administrate-users></app-administrate-users>
+    </div>
+    <div class="tab-pane fade" id="Cars" role="tabpanel" aria-labelledby="Cars-tab">
+        <app-administrate-cars></app-administrate-cars>
+    </div>
+  </div>
+
+</section>

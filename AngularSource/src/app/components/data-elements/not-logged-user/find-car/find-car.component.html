@@ -1,0 +1,17 @@
+<h1 *ngIf="fullCars!=null && fullCars.length>0">You Have {{ fullCars.length }} Cars</h1>
+<h1 *ngIf="fullCars==null || fullCars.length==0">You Have No Cars</h1>
+
+<div class="row justify-content-md-center"  *ngIf="loadingCarData">
+    <app-rotated-image></app-rotated-image>
+</div>
+
+<h3 *ngIf="allCarsAllDataError!=null && allCarsAllDataError!==''" class="row justify-content-md-center">{{allCarsAllDataError}}</h3>
+
+<h2>
+    <button type="button" class="btn btn-outline-primary" *ngFor="let i of [].constructor(carPages), let j = index" [ngClass]="[j == carPage ? 'active' : 'notselected']" (click)='PageTo(j)'>{{j}}</button>
+</h2>
+
+<h3>
+    <app-car-card-horizontal *ngFor="let car of fullCars" [car]="car"></app-car-card-horizontal>
+</h3>
+

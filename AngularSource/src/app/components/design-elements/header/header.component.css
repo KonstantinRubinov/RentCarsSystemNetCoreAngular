@@ -1,0 +1,11 @@
+li:hover{
+    cursor: pointer;
+}
+
+ul{
+    width:100%;
+}
+
+nav{
+    margin: 0;
+}
