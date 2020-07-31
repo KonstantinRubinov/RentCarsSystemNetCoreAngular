@@ -134,12 +134,7 @@ namespace RentCarsServerCore
 			try
 			{
 				int i = carForRentRepository.DeleteCarForRent(number);
-				if (i > 0)
-				{
-					return NoContent();
-				}
-				return StatusCode(StatusCodes.Status500InternalServerError);
-
+				return NoContent();
 			}
 			catch (Exception ex)
 			{
@@ -156,12 +151,7 @@ namespace RentCarsServerCore
 			try
 			{
 				int i = carForRentRepository.DeleteCarForRent(number);
-				if (i > 0)
-				{
-					return NoContent();
-				}
-				return StatusCode(StatusCodes.Status500InternalServerError);
-
+				return NoContent();
 			}
 			catch (Exception ex)
 			{

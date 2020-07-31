@@ -112,12 +112,7 @@ namespace RentCarsServerCore
 			try
 			{
 				int i = carTypeRepository.DeleteCarType(type);
-				if (i > 0)
-				{
-					return NoContent();
-				}
-				return StatusCode(StatusCodes.Status500InternalServerError);
-
+				return NoContent();
 			}
 			catch (Exception ex)
 			{
@@ -134,12 +129,7 @@ namespace RentCarsServerCore
 			try
 			{
 				int i = carTypeRepository.DeleteCarType(id);
-				if (i > 0)
-				{
-					return NoContent();
-				}
-				return StatusCode(StatusCodes.Status500InternalServerError);
-
+				return NoContent();
 			}
 			catch (Exception ex)
 			{

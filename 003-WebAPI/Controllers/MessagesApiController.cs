@@ -126,12 +126,7 @@ namespace RentCarsServerCore
 			try
 			{
 				int i = messagesRepository.DeleteMessage(messageId);
-				if (i > 0)
-				{
-					return NoContent();
-				}
-				return StatusCode(StatusCodes.Status500InternalServerError);
-
+				return NoContent();
 			}
 			catch (Exception ex)
 			{
@@ -146,12 +141,7 @@ namespace RentCarsServerCore
 			try
 			{
 				int i = messagesRepository.DeleteMessageByUser(userId);
-				if (i > 0)
-				{
-					return NoContent();
-				}
-				return StatusCode(StatusCodes.Status500InternalServerError);
-
+				return NoContent();
 			}
 			catch (Exception ex)
 			{
