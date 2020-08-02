@@ -60,7 +60,7 @@ export class SearchCarService {
     const action: Action={type:ActionType.StartLoadingCarData, payload:true};
     this.redux.dispatch(action);
 
-    let he = new HttpHeaders({'Content-Type':  'application/json','Authorization': 'Bearer ' + sessionStorage.getItem('access_token'), 'page': page.toString(), 'carsNum': carsNum.toString() });
+    let he = new HttpHeaders({'Content-Type': 'application/json','Authorization': 'Bearer ' + sessionStorage.getItem('access_token'), 'page': page.toString(), 'carsNum': carsNum.toString() });
     let observable = this.http.get<SearchReturn>(fullCarsUrl, { headers: he });
     observable.subscribe(searchReturn=>{
       const action: Action={type:ActionType.GetSearchReturn, payload:searchReturn};

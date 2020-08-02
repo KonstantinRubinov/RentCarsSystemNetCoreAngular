@@ -36,7 +36,7 @@ export class SignUpService {
   //   });
   // }
 
-  public signUp(userModel:User): Observable<User> {
+  public signUp(userModel:User): Observable<any> {
     return this.http.post<User>(signUpUrl, userModel);
   }
   
