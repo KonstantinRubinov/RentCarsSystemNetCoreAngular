@@ -63,9 +63,6 @@ namespace RentCarsServerCore
 				};
 			});
 
-
-
-
 			if (GlobalVariable.logicType == 1)
 			{
 				// configure DI for application services
@@ -120,10 +117,6 @@ namespace RentCarsServerCore
 			app.UseAuthentication();
 			app.UseAuthorization();
 
-			//app.UseAuthorization();
-			//app.UseRouting();
-
-
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
@@ -137,6 +130,9 @@ namespace RentCarsServerCore
 			app.UseHttpsRedirection();
 			app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new List<string> { "index.html" } });
 			app.UseStaticFiles();
+
+			//Add our new middleware to the pipeline
+			app.UseRequestResponseLogging();
 
 			app.UseEndpoints(endpoints =>
 			{
